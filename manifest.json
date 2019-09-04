@@ -1,16 +1,10 @@
 {
-  "name": "CHANGEME",
   "vendor": "vtex",
-  "version": "0.0.1",
-  "title": "CHANGEME",
-  "description": "CHANGEME",
-  "billingOptions": {
-    "termsURL": "",
-    "support": {
-      "url": "https://support.vtex.com/hc/requests"
-    },
-    "free": true
-  },
+  "name": "rtbhouse",
+  "version": "0.0.0",
+  "title": "RTB House",
+  "description": "RTB House pixel app",
+  "defaultLocale": "pt-BR",
   "builders": {
     "react": "3.x",
     "store": "0.x",
@@ -20,12 +14,12 @@
     "vtex.pixel-interfaces": "1.x"
   },
   "settingsSchema": {
-    "title": "APP NAME",
+    "title": "RTB house",
     "type": "object",
     "properties": {
-      "gtmId": {
-        "title": "SAMPLE FIELD",
-        "description": "Enter the ID (GTM-XXXX) from your Google Tag Manager",
+      "rtbhouseId": {
+        "title": "RTB House Id",
+        "description": "Enter your RTB House Id",
         "type": "string"
       }
     }

@@ -1,5 +1,6 @@
 export interface PixelMessage extends MessageEvent {
   data:
+    | PageInfoData
     | ProductViewData
     | ProductClickData
     | OrderPlacedData
@@ -7,6 +8,8 @@ export interface PixelMessage extends MessageEvent {
     | ProductImpressionData
     | AddToCartData
     | RemoveToCartData
+    | InternalSiteSearchViewData
+    | CategoryViewData
 }
 
 export interface EventData {
@@ -21,6 +24,27 @@ export interface PageViewData extends EventData {
   pageTitle: string
   pageUrl: string
   referrer: string
+}
+
+export interface PageInfoData extends EventData {
+  event: 'pageInfo'
+  eventName: 'vtex:pageInfo'
+  eventType: string
+  pageUrl: string
+}
+
+export interface InternalSiteSearchViewData extends EventData {
+  event: 'internalSiteSearchView'
+  eventName: 'vtex:internalSiteSearchView'
+  products: Product[]
+  currency: string
+}
+
+export interface CategoryViewData extends EventData {
+  event: 'categoryView'
+  eventName: 'vtex:categoryView'
+  products: Product[]
+  currency: string
 }
 
 export interface AddToCartData extends EventData {
