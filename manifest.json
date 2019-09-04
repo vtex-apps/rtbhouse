@@ -3,7 +3,7 @@
   "name": "rtbhouse",
   "version": "0.0.0",
   "title": "RTB House",
-  "description": "RTB House",
+  "description": "RTB House pixel app",
   "defaultLocale": "pt-BR",
   "builders": {
     "react": "3.x",
