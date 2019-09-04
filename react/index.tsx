@@ -2,12 +2,8 @@ import { canUseDOM } from 'vtex.render-runtime'
 import { PixelMessage } from './typings/events'
 import { getCategories, createIframeTag } from './helpers/index'
 
-const {
-  rtbhouseId,
-  location: { pathname },
-} = window
-
 function handleMessages(e: PixelMessage) {
+  const { rtbhouseId } = window
   switch (e.data.eventName) {
     case 'vtex:pageInfo': {
       if (e.data.eventType !== 'homeView') break
@@ -61,6 +57,10 @@ function handleMessages(e: PixelMessage) {
 }
 
 function handleLoad() {
+  const {
+    rtbhouseId,
+    location: { pathname },
+  } = window
   if (pathname !== '/login') return
   const iframeId = 'rtbhouse_otherPages'
   const iframe = document.getElementById(iframeId)
@@ -71,7 +71,7 @@ function handleLoad() {
     )
 }
 
-if (canUseDOM && rtbhouseId) {
+if (canUseDOM) {
   window.addEventListener('message', handleMessages)
   window.addEventListener('load', handleLoad)
 }
