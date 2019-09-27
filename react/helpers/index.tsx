@@ -26,5 +26,5 @@ export function createIframeTag(src: string, id?: string) {
 
 export function strNormalize(str: string): string {
   let strNormalized = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-  return strNormalized
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 }
