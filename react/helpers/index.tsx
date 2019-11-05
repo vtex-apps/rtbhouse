@@ -12,14 +12,6 @@ export function getCategories(products: Product[]) {
   return categories
 }
 
-export function getDepartment(products: Product[]) {
-  const [department] = products.map(
-    ({ categories: [category] }) =>
-      category.split('/').filter(item => item)
-  )
-  return department
-}
-
 export function createIframeTag(src: string, id?: string) {
   const iframe = document.createElement('iframe')
   iframe.setAttribute('src', src)
@@ -33,6 +25,6 @@ export function createIframeTag(src: string, id?: string) {
 }
 
 export function strNormalize(str: string): string {
-  let strNormalized = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-  return strNormalized
+  let strNormalized = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 }

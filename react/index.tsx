@@ -1,12 +1,11 @@
 import { canUseDOM } from 'vtex.render-runtime'
 import { PixelMessage } from './typings/events'
-import { getCategories, getDepartment, createIframeTag } from './helpers/index'
+import { getCategories, createIframeTag } from './helpers/index'
 
 function handleMessages(e: PixelMessage) {
   const { rtbhouseId } = window
   switch (e.data.eventName) {
     case 'vtex:pageInfo': {
-      createIframeTag(`//us.creativecdn.com/tags?id=${rtbhouseId}&amp;ncm=1`)
       if (e.data.eventType !== 'homeView') break
       const iframeId = 'rtbhouse_home'
       const src = `//us.creativecdn.com/tags?id=${rtbhouseId}_home`
@@ -45,27 +44,15 @@ function handleMessages(e: PixelMessage) {
       )
       break
     }
-    case 'vtex:departmentView': {
-      const { products } = e.data
-      const categories = getDepartment(products)
-      const department = categories[0]
-      createIframeTag(
-        `//us.creativecdn.com/tags?id=${rtbhouseId}_category2_${department}`,
-        'rtbhouse_category'
-      )
-      break
-    }
     case 'vtex:orderPlaced': {
       const { transactionSubtotal, transactionId, transactionProducts } = e.data
-      const skus = transactionProducts.map(({ sku }) => sku).join(',')
+      const skus = transactionProducts.map(({ id }) => id).join()
       createIframeTag(
-        `//us.creativecdn.com/tags?id=${rtbhouseId}_orderstatus2_${transactionSubtotal}_${transactionId}_${skus}&amp;cd=default`,
+        `//us.creativecdn.com/tags?id=${rtbhouseId}_orderstatus2_${transactionSubtotal}_${transactionId}_${skus}`,
         'rtbhouse_purchase'
       )
       break
     }
-    default:
-      break
   }
 }
 
