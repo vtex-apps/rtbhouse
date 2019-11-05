@@ -10,6 +10,7 @@ export interface PixelMessage extends MessageEvent {
     | RemoveToCartData
     | InternalSiteSearchViewData
     | CategoryViewData
+    | DepartmentData
 }
 
 export interface EventData {
@@ -43,6 +44,13 @@ export interface InternalSiteSearchViewData extends EventData {
 export interface CategoryViewData extends EventData {
   event: 'categoryView'
   eventName: 'vtex:categoryView'
+  products: Product[]
+  currency: string
+}
+
+export interface DepartmentData extends EventData {
+  event: 'departmentView'
+  eventName: 'vtex:departmentView'
   products: Product[]
   currency: string
 }
