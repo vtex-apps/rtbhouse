@@ -24,14 +24,6 @@ function handleMessages(e: PixelMessage) {
         )
       break
     }
-    case 'vtex:addToCart': {
-      const product = e.data.items[0]
-      if (product)
-        createIframeTag(
-          `//us.creativecdn.com/tags?id=pr_${rtbhouseId}_basketstatus_${product.skuId}`
-        )
-      break
-    }
     case 'vtex:internalSiteSearchView': {
       const { products } = e.data
       const skus = products
