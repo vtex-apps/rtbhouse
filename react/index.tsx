@@ -16,11 +16,11 @@ function handleMessages(e: PixelMessage) {
     }
     case 'vtex:productView': {
       const {
-        product: { productId },
+        product: { selectedSku: { itemId } },
       } = e.data
-      if (productId)
+      if (itemId)
         createIframeTag(
-          `//us.creativecdn.com/tags?id=pr_${rtbhouseId}_offer_${productId}`
+          `//us.creativecdn.com/tags?id=pr_${rtbhouseId}_offer_${itemId}`
         )
       break
     }
