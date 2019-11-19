@@ -6,7 +6,7 @@ export function getCategories(products: Product[]) {
       category
         .split('/')
         .filter(item => item)
-        .join('/')
+        .join(',')
     )
   )
   return categories
