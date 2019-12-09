@@ -16,11 +16,11 @@ function handleMessages(e: PixelMessage) {
     }
     case 'vtex:productView': {
       const {
-        product: { selectedSku: { itemId } },
+        product: { productId },
       } = e.data
-      if (itemId)
+      if (productId)
         createIframeTag(
-          `//us.creativecdn.com/tags?id=pr_${rtbhouseId}_offer_${itemId}`
+          `//us.creativecdn.com/tags?id=pr_${rtbhouseId}_offer_${productId}`
         )
       break
     }
@@ -56,8 +56,9 @@ function handleMessages(e: PixelMessage) {
       break
     }
     case 'vtex:orderPlaced': {
+      console.log('order placed: ', e)
       const { transactionSubtotal, transactionId, transactionProducts } = e.data
-      const skus = transactionProducts.map(({ sku }) => sku).join(',')
+      const skus = transactionProducts.map(({ id }) => id).join(',')
       createIframeTag(
         `//us.creativecdn.com/tags?id=pr_${rtbhouseId}_orderstatus2_${transactionSubtotal}_${transactionId}_${skus}&amp;cd=default`,
         'rtbhouse_purchase'
