@@ -56,11 +56,10 @@ function handleMessages(e: PixelMessage) {
       break
     }
     case 'vtex:orderPlaced': {
-      console.log('order placed: ', e)
       const { transactionSubtotal, transactionId, transactionProducts } = e.data
       const skus = transactionProducts.map(({ id }) => id).join(',')
       createIframeTag(
-        `//us.creativecdn.com/tags?id=pr_${rtbhouseId}_orderstatus2_${transactionSubtotal}_${transactionId}_${skus}&amp;cd=default`,
+        `//us.creativecdn.com/tags?id=pr_${rtbhouseId}_orderstatus2_${transactionSubtotal}_${transactionId}_${skus}&cd=default`,
         'rtbhouse_purchase'
       )
       break
