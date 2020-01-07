@@ -6,10 +6,10 @@ function handleMessages(e: PixelMessage) {
   const { rtbhouseId } = window
   switch (e.data.eventName) {
     case 'vtex:pageInfo': {
-      createIframeTag(`//us.creativecdn.com/tags?id=${rtbhouseId}&amp;ncm=1`)
+      createIframeTag(`//us.creativecdn.com/tags?id=pr_${rtbhouseId}&amp;ncm=1`)
       if (e.data.eventType !== 'homeView') break
       const iframeId = 'rtbhouse_home'
-      const src = `//us.creativecdn.com/tags?id=${rtbhouseId}_home`
+      const src = `//us.creativecdn.com/tags?id=pr_${rtbhouseId}_home`
       const iframe = document.getElementById(iframeId)
       if (!iframe) createIframeTag(src, iframeId)
       break
@@ -20,7 +20,7 @@ function handleMessages(e: PixelMessage) {
       } = e.data
       if (productId)
         createIframeTag(
-          `//us.creativecdn.com/tags?id=${rtbhouseId}_offer_${productId}`
+          `//us.creativecdn.com/tags?id=pr_${rtbhouseId}_offer_${productId}`
         )
       break
     }
@@ -31,7 +31,7 @@ function handleMessages(e: PixelMessage) {
         .slice(0, 5)
         .join()
       createIframeTag(
-        `//us.creativecdn.com/tags?id=${rtbhouseId}_listing_${skus}`,
+        `//us.creativecdn.com/tags?id=pr_${rtbhouseId}_listing_${skus}`,
         'rtbhouse_search'
       )
       break
@@ -40,7 +40,7 @@ function handleMessages(e: PixelMessage) {
       const { products } = e.data
       const categories = getCategories(products)
       createIframeTag(
-        `//us.creativecdn.com/tags?id=${rtbhouseId}_category2_${categories}`,
+        `//us.creativecdn.com/tags?id=pr_${rtbhouseId}_category2_${categories}`,
         'rtbhouse_category'
       )
       break
@@ -50,16 +50,16 @@ function handleMessages(e: PixelMessage) {
       const categories = getDepartment(products)
       const department = categories[0]
       createIframeTag(
-        `//us.creativecdn.com/tags?id=${rtbhouseId}_category2_${department}`,
+        `//us.creativecdn.com/tags?id=pr_${rtbhouseId}_category2_${department}`,
         'rtbhouse_category'
       )
       break
     }
     case 'vtex:orderPlaced': {
       const { transactionSubtotal, transactionId, transactionProducts } = e.data
-      const skus = transactionProducts.map(({ sku }) => sku).join(',')
+      const skus = transactionProducts.map(({ id }) => id).join(',')
       createIframeTag(
-        `//us.creativecdn.com/tags?id=${rtbhouseId}_orderstatus2_${transactionSubtotal}_${transactionId}_${skus}&amp;cd=default`,
+        `//us.creativecdn.com/tags?id=pr_${rtbhouseId}_orderstatus2_${transactionSubtotal}_${transactionId}_${skus}&cd=default`,
         'rtbhouse_purchase'
       )
       break
@@ -79,7 +79,7 @@ function handleLoad() {
   const iframe = document.getElementById(iframeId)
   if (!iframe)
     createIframeTag(
-      `//us.creativecdn.com/tags?id=${rtbhouseId}&ncm=1`,
+      `//us.creativecdn.com/tags?id=pr_${rtbhouseId}&ncm=1`,
       iframeId
     )
 }
