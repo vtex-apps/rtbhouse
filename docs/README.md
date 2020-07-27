@@ -11,7 +11,7 @@ or
 Run the following command:
 
 ```sh
-vtex install vtex.rtbhouse@0.x
+vtex install vtex.rtbhouse@1.x
 ```
 
 Next, open the app settings on your admin and fill the form with your RTB House ID.
